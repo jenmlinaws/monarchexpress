@@ -1,0 +1,36 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: af-south-1
+    AWS_ACCOUNT_ID: 740323995670
+    IMAGE_REPO_NAME: monarch/express
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region af-south-1 | docker login --username AWS --password-stdin 740323995670.dkr.ecr.af-south-1.amazonaws.com
+      - REPOSITORY_URI=740323995670.dkr.ecr.af-south-1.amazonaws.com/monarch/express
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=build-${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t butterfly-webapp:$IMAGE_TAG .
+      - docker tag butterfly-webapp:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag butterfly-webapp:$IMAGE_TAG $REPOSITORY_URI:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
+      - echo Writing image definitions file...
+      - printf '[{"name":"butterfly-webapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - echo Build complete
+
+artifacts:
+  files:
+    - imagedefinitions.json
