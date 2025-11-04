@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Butterfly Landing</title>
+        <title>ECS Express Mode</title>
         <style>
             body {
                 margin: 0;
