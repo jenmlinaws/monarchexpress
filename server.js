@@ -101,13 +101,16 @@ app.get('/', (req, res) => {
     </head>
     <body>
         <div class="container">
-            <h1></h1>
+            <h1>Monarch Express</h1>
             <img src="/static/Butterfly - Swag-1.jpg" alt="Beautiful Butterfly" class="butterfly-image">
-            <p></p>
+            <p>A simple, elegant landing page showcasing nature's beauty.</p>
+            <!-- ECS Status Display - Commented Out
             <div id="ecs-status" class="status-container">
                 <div id="status-content">Loading service status...</div>
             </div>
+            -->
         </div>
+        <!-- ECS Status Script - Commented Out
         <script>
             async function fetchECSStatus() {
                 try {
@@ -183,6 +186,7 @@ app.get('/', (req, res) => {
             // Refresh status every 30 seconds
             setInterval(fetchECSStatus, 30000);
         </script>
+        -->
     </body>
     </html>
   `);
