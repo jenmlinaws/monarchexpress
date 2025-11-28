@@ -101,9 +101,8 @@ app.get('/', (req, res) => {
     </head>
     <body>
         <div class="container">
-            <h1>Monarch Express</h1>
             <img src="/static/Butterfly - Swag-1.jpg" alt="Beautiful Butterfly" class="butterfly-image">
-            <p>A simple, elegant landing page showcasing nature's beauty.</p>
+            <p></p>
             <!-- ECS Status Display - Commented Out
             <div id="ecs-status" class="status-container">
                 <div id="status-content">Loading service status...</div>
