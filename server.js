@@ -101,7 +101,7 @@ app.get('/', (req, res) => {
     </head>
     <body>
         <div class="container">
-            <img src="/static/Butterfly - Swag-1.jpg" alt="Beautiful Butterfly" class="butterfly-image">
+            <img src="/static/Butterfly - Swag@3x.png" alt="Beautiful Butterfly" class="butterfly-image">
             <p></p>
             <!-- ECS Status Display - Commented Out
             <div id="ecs-status" class="status-container">
